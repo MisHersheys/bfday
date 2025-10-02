@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Husband | From Paula</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom right, #fdfcfb, #e2d1c3);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .scrapbook {
+            background-color: #fffef7;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #f4e4cd;
+        }
+        h1 {
+            color: #a85f5f;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+        .subtitle {
+            color: #d4a76a;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        .memory-container {
+            position: relative;
+            height: 350px;
+            margin: 30px 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+        }
+        .memory-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .memory-slide.active {
+            opacity: 1;
+        }
+        .memory-image {
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .memory-caption {
+            font-style: italic;
+            color: #666;
+            padding: 0 15px;
+        }
+        .nav-button {
+            background-color: #d4a76a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover {
+            background-color: #b8935c;
+        }
+        .heart {
+            color: #e74c3c;
+            font-size: 1.2em;
+            margin: 0 3px;
+        }
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.4em;
+            color: #a85f5f;
+        }
+    </style>
+</head>
+<body>
+    <div class="scrapbook">
+        <h1>For My Wonderful Boyfriend</h1>
+        <p class="subtitle">A little collection of your sillyness <span class="heart">♥</span></p>
+        
+        <div class="memory-container">
+            <!-- MEMORY SLIDE 1 -->
+            <div class="memory-slide active">
+                <!-- Replace 'photo1.jpg' with the path to your first photo -->
+                <img src="https://www.dropbox.com/scl/fi/jo40w3lnaoofu3ixyci9x/received_25381760331426887.jpeg?rlkey=rnxmedejy47okttdvgl1yfs9c&st=ta0iun8e&dl=0" alt="Pogi" class="memory-image">
+                <!-- Replace this text with your own caption -->
+                <p class="memory-caption">Today is your day.</p>
+            </div>
+            <!-- MEMORY SLIDE 2 -->
+            <div class="memory-slide">
+                <!-- Replace 'photo2.jpg' with the path to your second photo -->
+                <img src="https://www.dropbox.com/scl/fi/c1s3tyhi79dkmujinhgxa/Messenger_creation_E33CE898-D3FC-492D-9AAF-457873E36341.jpeg?rlkey=8m03sb20v6jdzgtv0n7a6bl7r&st=lm2sjoez&dl=0" alt="Pogi" class="memory-image">
+                <!-- Replace this text with your own caption -->
+                <p class="memory-caption">Your not just my boyfriend, your my bestfriend, partner in crime, my husband.</p>
+            </div>
+            <!-- MEMORY SLIDE 3 -->
+            <div class="memory-slide">
+                <!-- Replace 'photo3.jpg' with the path to your third photo -->
+                <img src="https://www.dropbox.com/scl/fi/2fo187coe67m3tvntj2sz/Messenger_creation_F21EEC1E-E4CA-44E2-94B6-E9DDC0149803.png?rlkey=tkoq0imxok22yf7mi3z2sxu0x&st=k23kfkla&dl=0" alt="Pogi" class="memory-image">
+                <!-- Replace this text with your own caption -->
+                <p class="memory-caption">I hope that your always be my side, Iloveyousomuch baby.</p>
+            </div>
+            <!-- Add more slides by copying the entire 'memory-slide' div block -->
+        </div>
+
+        <div>
+            <button class="nav-button" id="prevBtn">Previous</button>
+            <button class="nav-button" id="nextBtn">Next</button>
+        </div>
+
+        <p class="signature">Your beautiful girlfriend, Paula <span class="heart">♥</span></p>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.memory-slide');
+
+        function showSlide(n) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            // Show the current slide
+            slides[n].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Add event listeners to buttons
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        // Optional: Auto-advance slides every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
